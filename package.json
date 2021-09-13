@@ -1,0 +1,25 @@
+{
+  "name": "link-preview",
+  "version": "1.0.0",
+  "description": "Simple link preview module",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "dev": "ts-node-dev src/index.ts"
+  },
+  "keywords": [
+    "opengraph",
+    "ts",
+    "typescript",
+    "ogp",
+    "link",
+    "preview"
+  ],
+  "author": "mich4ld <mchldziuba@protonmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "cheerio": "^1.0.0-rc.10"
+  }
+}
