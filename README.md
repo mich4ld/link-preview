@@ -3,3 +3,8 @@ Simple link preview library for Node.js. </br>
 It's using:
 - Cheerio
 - Axios
+
+### Installation
+```bash
+npm install @mich4l/link-preview
+```
