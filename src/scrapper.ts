@@ -1,15 +1,5 @@
 import cheerio, { CheerioAPI } from 'cheerio';
 
-function getHostname(url: string) {
-    try {
-        const { hostname } = new URL(url);
-
-        return hostname;
-    } catch(err) {
-        return;
-    }
-}
-
 export class WebScrapper {
     private readonly $: CheerioAPI;
 
@@ -17,10 +7,9 @@ export class WebScrapper {
         this.$ = cheerio.load(html);
     }
 
-    getData(url: string) {
+    getData() {
         return {
-            url,
-            siteName: this.getSiteName(url),
+            siteName: this.getSiteName(),
             title: this.getTitle(),
             description: this.getDescription(),
             type: this.getType(),
@@ -40,8 +29,8 @@ export class WebScrapper {
         return this.$(tagName).attr('content');
     }
 
-    private getSiteName(url: string) {
-        return this.getMetaTags('site_name') || getHostname(url);
+    private getSiteName() {
+        return this.getMetaTags('site_name');
     }
 
     private getTitle() {

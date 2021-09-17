@@ -10,6 +10,8 @@ function createUaHeader(userAgentString?: string) {
     }
 }
 
+const MAX_RESPONSE_SIZE = 5 * 1024 * 1024
+
 export class HttpClient {
     private readonly http: AxiosInstance;
     private rotateIndex = 0;
@@ -18,16 +20,27 @@ export class HttpClient {
         private userAgents?: string[],
         axiosConfig?: AxiosRequestConfig,
     ) {
-        this.http = axios.create(axiosConfig);
+        this.http = axios.create({
+            maxContentLength: MAX_RESPONSE_SIZE,
+            ...axiosConfig,
+        });
     }
 
     async fetch(url: string) {
-        const userAgent = this.rotateUA()
+        const userAgent = this.rotateUA();
 
         const response = await this.http.get(url, {
             headers: createUaHeader(userAgent),
-            responseType: 'text',
         });
+
+        const contentType = response.headers['content-type'] || 'text/plain';
+        if (!contentType.includes('text/html') && !contentType.includes('text/plain')) {
+            throw Error('Invalid content type');
+        }
+
+        if (typeof response.data !== 'string') {
+            throw Error('Response is not string');
+        }
 
         return response.data;
     }

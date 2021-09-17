@@ -18,7 +18,9 @@ export class LinkPreview {
         try {
             const html = await this.http.fetch(url);
             const scrapper = new WebScrapper(html);
-            return scrapper.getData(url);
+            const metadata = scrapper.getData();
+            
+            return { url, ...metadata }
         }
         catch (err) {
             return;
