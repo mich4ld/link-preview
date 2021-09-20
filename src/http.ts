@@ -10,7 +10,7 @@ function createUaHeader(userAgentString?: string) {
     }
 }
 
-const MAX_RESPONSE_SIZE = 5 * 1024 * 1024
+const MAX_RESPONSE_SIZE = 3 * 1024 * 1024
 
 export class HttpClient {
     private readonly http: AxiosInstance;

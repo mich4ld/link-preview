@@ -5,11 +5,12 @@ It's using:
 - Axios
 
 ### Features
-- limit response size to 5MB by default
+- limit response size to 3MB by default
 - user agent rotation
 - you can configure axios to use http proxy or even Tor
 - ignoring non-string responses (json API, files)
 - written in TypeScript
+- validate utility (reject IP adresses, localhost and invalid url)
 
 ### Installation
 ```bash
