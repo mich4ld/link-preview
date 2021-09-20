@@ -3,6 +3,7 @@ Simple link preview library for Node.js. </br>
 It's using:
 - Cheerio
 - Axios
+- get-urls
 
 ### Features
 - limit response size to 3MB by default
@@ -11,12 +12,9 @@ It's using:
 - ignoring non-string responses (json API, files)
 - written in TypeScript
 - validate utility (reject IP adresses, localhost and invalid url)
+- reexport get-urls library
 
 ### Installation
 ```bash
 npm install @mich4l/link-preview
 ```
-
-### To-do
-- add possibility to extend default crawler
-- add utility to extract urls from text

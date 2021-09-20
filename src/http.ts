@@ -1,16 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-
-function createUaHeader(userAgentString?: string) {
-    if (!userAgentString) {
-        return;
-    }
-
-    return {
-        'User-Agent': userAgentString,
-    }
-}
-
-const MAX_RESPONSE_SIZE = 3 * 1024 * 1024
+import { MAX_RESPONSE_SIZE } from "./constants";
 
 export class HttpClient {
     private readonly http: AxiosInstance;
@@ -30,7 +19,7 @@ export class HttpClient {
         const userAgent = this.rotateUA();
 
         const response = await this.http.get(url, {
-            headers: createUaHeader(userAgent),
+            headers: this.createUaHeader(userAgent),
         });
 
         const contentType = response.headers['content-type'] || 'text/plain';
@@ -43,6 +32,16 @@ export class HttpClient {
         }
 
         return response.data;
+    }
+
+    private createUaHeader(userAgentString?: string) {
+        if (!userAgentString) {
+            return;
+        }
+    
+        return {
+            'User-Agent': userAgentString,
+        }
     }
 
     private rotateUA(): string | undefined {

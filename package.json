@@ -1,6 +1,6 @@
 {
   "name": "@mich4l/link-preview",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple link preview module",
   "main": "dist/index.js",
   "scripts": {
@@ -19,7 +19,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.4",
-    "cheerio": "^1.0.0-rc.10"
+    "cheerio": "^1.0.0-rc.10",
+    "get-urls": "^10.0.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",

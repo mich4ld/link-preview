@@ -1,4 +1,5 @@
 import { isIP } from 'net';
+import { LOCAL_ADRESSES } from './constants';
 
 interface IValidationOptions {
     protocols: string[],
@@ -10,13 +11,6 @@ const defaultOptions: IValidationOptions = {
     preventIPs: true,
 }
 
-const localAdresses = [
-    '127.0.0.1',
-    'localhost',
-    '::1',
-    '[::1]',
-    '0.0.0.0',
-];
 
 function preventIP(hostname: string) {
     if (hostname.startsWith('[')) {
@@ -42,7 +36,7 @@ export function validate(url: string, options: IValidationOptions = defaultOptio
             return false;
         }
 
-        if(localAdresses.includes(hostname)) {
+        if(LOCAL_ADRESSES.includes(hostname)) {
             return false;
         }
 
